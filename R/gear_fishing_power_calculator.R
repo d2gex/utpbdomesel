@@ -26,18 +26,19 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
   #'    b) the gear's average area ratio through all trials
   #' @export
   # @formatter:on
-  calculate_gear_fishing_power_by_trials = function(num_trials = 1024) {
-    trial_haul_ids <- c()
+  calculate_gear_fishing_power_by_trials = function(num_trials = 50) {
+    trial_haul_ids <- list()
     trial_area_ratios <- list()
     for (i in 1:num_trials) {
       gear_power_details <- self$calculate_gear_fishing_power()
-      trial_haul_ids[i] <- gear_power_details$used_haul_ids
+      trial_haul_ids[[i]] <- gear_power_details$used_haul_ids
       trial_area_ratios[[i]] <- gear_power_details$gear_area_ratios
     }
     # Get randomly one of the sequence of hauls involved in the calculation of the fishing power in one single trial
-    haul_ids <- trial_haul_ids[sample(1:length(trial_haul_ids), 1)]
-    mean_gear_area_ratios <- apply(purrr::map_df(trial_area_ratios, tibble::as.tibble), 2, mean)
+    haul_ids <- trial_haul_ids[[sample(1:length(trial_haul_ids), 1)]]
+    mean_gear_area_ratios <- as.list(apply(purrr::map_df(trial_area_ratios, tibble::as.tibble), 2, mean))
     return(list(
+      all_haul_ids = trial_haul_ids,
       haul_ids = haul_ids,
       mean_gear_area_ratios = mean_gear_area_ratios
     ))
@@ -62,7 +63,7 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
     max_available_soaktime <- tail((gear_details[[gear_offset]])$soaktime_sum, 1)
     gear_details <- private$cut_gears_soaktime_by_threshold(gear_details, max_available_soaktime)
     gear_area_ratios <- private$calculate_gear_area_ratios(gear_details)
-    used_haul_ids <- private$get_involved_haul_ids(gear_ratio_area)
+    used_haul_ids <- private$get_involved_haul_ids(gear_details)
     return(list(
       gear_area_ratios = gear_area_ratios,
       used_haul_ids = used_haul_ids
