@@ -37,10 +37,12 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
     # Get randomly one of the sequence of hauls involved in the calculation of the fishing power in one single trial
     haul_ids <- trial_haul_ids[[sample(1:length(trial_haul_ids), 1)]]
     mean_gear_area_ratios <- as.list(apply(purrr::map_df(trial_area_ratios, tibble::as.tibble), 2, mean))
+    relative_fishing_power <- private$get_relative_fishing_power(mean_gear_area_ratios)
     return(list(
       all_haul_ids = trial_haul_ids,
-      haul_ids = haul_ids,
-      mean_gear_area_ratios = mean_gear_area_ratios
+      sample_haul_ids = haul_ids,
+      mean_gear_area_ratios = mean_gear_area_ratios,
+      relative_fishing_power = relative_fishing_power
     ))
 
   },
@@ -151,6 +153,21 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
           )
         )
       )
+    )
+  },
+  # @formatter:off
+  #'@description
+  #' Given the area ratios of each gear it calculate their relative fishing power
+  #'
+  #' @param area_ratio named list with the area ratios of each gear
+  #' @returns named list of relative fishing power
+  # @formatter:on
+  get_relative_fishing_power = function(area_ratio) {
+    max_ratio <- max(unlist(area_ratio))
+    return(
+      lapply(area_ratio, function(x) {
+        round(x / max_ratio, 2)
+      })
     )
   }
 ))
