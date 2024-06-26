@@ -1,4 +1,4 @@
-GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public = list(
+GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public = list( # nolint
 
   # @formatter:off
   #' @description
@@ -15,7 +15,7 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
     self$gear_area <- gear_area
   },
   # @formatter:off
-  #'@description
+  #' @description
   #' Calculate the fishing power of each gear through a number of trials. At each trial, all rows of each gear are
   #' randomly shuffled, their soaktime levelled off and ratio areas calculated (number of panes of each haull * panel
   #' ratio). The final ratio area is the average over all trials. In addition, a sequence of haul_ids involved in one
@@ -35,8 +35,8 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
       trial_area_ratios[[i]] <- gear_power_details$gear_area_ratios
     }
     # Get randomly one of the sequence of hauls involved in the calculation of the fishing power in one single trial
-    haul_ids <- trial_haul_ids[[sample(1:length(trial_haul_ids), 1)]]
-    mean_gear_area_ratios <- as.list(apply(purrr::map_df(trial_area_ratios, tibble::as.tibble), 2, mean))
+    haul_ids <- trial_haul_ids[[sample(seq_along(trial_haul_ids), 1)]]
+    mean_gear_area_ratios <- as.list(apply(purrr::map_df(trial_area_ratios, tibble::as_tibble), 2, mean))
     relative_fishing_power <- private$get_relative_fishing_power(mean_gear_area_ratios)
     return(list(
       all_haul_ids = trial_haul_ids,
@@ -44,10 +44,9 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
       mean_gear_area_ratios = mean_gear_area_ratios,
       relative_fishing_power = relative_fishing_power
     ))
-
   },
   # @formatter:off
-  #'@description
+  #' @description
   #' Calculate the fishing power of each gear and also return the haul ids involved in the calculation
   #'
   #' @returns a named list containing:
@@ -73,7 +72,7 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
   }
 ), private = list(
   # @formatter:off
-  #'@description
+  #' @description
   #' Calculate the cumulative soaktime for a given gear by first randomising the rows of the haul dataframe. This is
   #' required for each trial and due to the fact that the largest gear dataframe has got more hauls than the shortest
   #' one.
@@ -86,15 +85,15 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
       dplyr::filter(gear == gear_name)
 
     # randomise rows
-    gear_soaktime <- gear_soaktime[sample(nrow(gear_soaktime)),]
+    gear_soaktime <- gear_soaktime[sample(nrow(gear_soaktime)), ]
 
     gear_soaktime <- gear_soaktime %>%
-      dplyr::mutate(id = 1:nrow(gear_soaktime)) %>%
+      dplyr::mutate(id = seq_along(nrow(gear_soaktime))) %>%
       dplyr::mutate(soaktime_sum = cumsum(soak_time))
     return(gear_soaktime)
   },
   # @formatter:off
-  #'@description
+  #' @description
   #' Get the offset of the gear that provides the maximum soaktime. This is the gear least employed - with the
   #' smallest effort.
   #'
@@ -102,10 +101,12 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
   #' @returns a single list with name of gear and max soaktime
   # @formatter:on
   get_offset_least_used_gear = function(gears) {
-    return(which.min(lapply(gears, function(x) { max(x$soaktime_sum) })))
+    return(which.min(lapply(gears, function(x) {
+      max(x$soaktime_sum)
+    })))
   },
   # @formatter:off
-  #'@description
+  #' @description
   #' Level off every gear's total soaktime to that of the gear that is least used to equalise fishing effort
   #'
   #' @param gears array of gears for which cummulative soaktime has already been calculated
@@ -120,7 +121,7 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
     )
   },
   # @formatter:off
-  #'@description
+  #' @description
   #' Calculate the area ratio of each gear based on the total number of panels and the average panel's area ratio
   #'
   #' @param gears array of gears for which cummulative soaktime has been levelled off
@@ -130,13 +131,13 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
     gear_ratios <- list()
     for (gear_name in names(gears)) {
       num_panels <- sum(gears[[gear_name]]$panels)
-      panel_ratio <- as.numeric(self$gear_area[self$gear_area['gear'] == gear_name, 'area_ratio'])
-      gear_ratios [[gear_name]] <- num_panels * panel_ratio
+      panel_ratio <- as.numeric(self$gear_area[self$gear_area["gear"] == gear_name, "area_ratio"])
+      gear_ratios[[gear_name]] <- num_panels * panel_ratio
     }
     return(gear_ratios)
   },
   # @formatter:off
-  #'@description
+  #' @description
   #' Get the unique haul ids of each row for all gears involved in the calculation of the fishing power
   #'
   #' @param gears array of gears for which cummulative soaktime has been levelled off
@@ -156,7 +157,7 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
     )
   },
   # @formatter:off
-  #'@description
+  #' @description
   #' Given the area ratios of each gear it calculate their relative fishing power
   #'
   #' @param area_ratio named list with the area ratios of each gear
