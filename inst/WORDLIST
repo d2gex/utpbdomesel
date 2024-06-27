@@ -12,6 +12,7 @@ gpl
 iim
 Initialise
 mit
+Mixin
 purrr
 Roxygen
 RoxygenNote
@@ -19,6 +20,7 @@ substracted
 tibble
 tidyr
 TropFishR
+util
 utpbdomesel
 utpbwlfq
 vectorwith

@@ -11,6 +11,9 @@ the SELECT object result
 \description{
 Class that estimate some shape selectivity for a list of gears using SELECT
 }
+\section{Super class}{
+\code{utpbdomesel::MixinUtilities} -> \code{UtpbDomeSELECTEstimator}
+}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
@@ -35,6 +38,14 @@ Class that estimate some shape selectivity for a list of gears using SELECT
 \item \href{#method-UtpbDomeSELECTEstimator-clone}{\code{UtpbDomeSELECTEstimator$clone()}}
 }
 }
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="utpbdomesel" data-topic="MixinUtilities" data-id="create_empty_dataframe"><a href='../../utpbdomesel/html/MixinUtilities.html#method-MixinUtilities-create_empty_dataframe'><code>utpbdomesel::MixinUtilities$create_empty_dataframe()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="utpbdomesel" data-topic="MixinUtilities" data-id="df_to_unname_matrix"><a href='../../utpbdomesel/html/MixinUtilities.html#method-MixinUtilities-df_to_unname_matrix'><code>utpbdomesel::MixinUtilities$df_to_unname_matrix()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-UtpbDomeSELECTEstimator-new"></a>}}
 \if{latex}{\out{\hypertarget{method-UtpbDomeSELECTEstimator-new}{}}}
