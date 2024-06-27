@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Class that estimate some shape selectivity for a list of gears using SELECT
-UtpbDomeSELECTEstimator <- R6::R6Class("UtpbDomeSELECTEstimator", public = list( # nolint
+UtpbDomeSELECTEstimator <- R6::R6Class("UtpbDomeSELECTEstimator", inherit = MixinUtilities, public = list( # nolint
   # @formatter:off
   #' @field length_fq long dataframe with lengths and gears
   length_fq = NULL,
@@ -132,15 +132,8 @@ UtpbDomeSELECTEstimator <- R6::R6Class("UtpbDomeSELECTEstimator", public = list(
       tidyr::replace_na(new_total_columns)
 
     return(list(
-      gear_catch_matrix = private$df_to_unname_matrix(total_catch_df, from_col = 2),
+      gear_catch_matrix = self$df_to_unname_matrix(total_catch_df, from_col = 2),
       midpoints = total_catch_df$MeanLength
     ))
-  },
-  df_to_unname_matrix = function(data, from_col = NULL, to_col = NULL) {
-    from_col <- ifelse(is.null(from_col), 1, from_col)
-    to_col <- ifelse(is.null(to_col), length(names(data)), to_col)
-    return(
-      unname(as.matrix(data[, from_col:to_col]))
-    )
   }
 ))
