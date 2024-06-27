@@ -16,4 +16,7 @@ Imports:
     dplyr,
     purrr,
     R6,
-    tibble
+    tibble,
+    tidyr,
+    TropFishR,
+    utpbwlfq

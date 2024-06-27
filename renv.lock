@@ -659,17 +659,18 @@
       "RemoteUsername": "d2gex",
       "RemoteRepo": "utpbwlfq",
       "RemoteRef": "main",
-      "RemoteSha": "77b294fcab0cf314f319374c0fc499ec914dbc6b",
+      "RemoteSha": "e81832bb7a77a8ea1b681cdfdd34dfe5785170e1",
       "Requirements": [
         "R",
         "R6",
         "assertr",
         "dplyr",
+        "magrittr",
         "stringr",
         "testit",
         "tidyr"
       ],
-      "Hash": "56ab17b228f2136ab11df0afbec0f043"
+      "Hash": "ba72f4bd42d20b7967a19044676a29af"
     },
     "vctrs": {
       "Package": "vctrs",
