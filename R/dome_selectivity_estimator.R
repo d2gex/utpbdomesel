@@ -46,12 +46,19 @@ UtpbDomeSELECTEstimator <- R6::R6Class("UtpbDomeSELECTEstimator", inherit = Mixi
     for (model in self$models) {
       gears_long_catch_data <- private$build_gear_catch_at_length_long_df(min_padding, up_to_linf)
       gear_select_catch_data <- private$build_select_method_catch_data(gears_long_catch_data)
-      results[[model]] <- self$estimate_selectivity_curve(model,
-        self$fishing_power,
-        gear_select_catch_data$gear_catch_matrix,
-        mesh_sizes,
-        gear_select_catch_data$midpoints,
-        plot = plot
+      tryCatch(
+        {
+          results[[model]] <- self$estimate_selectivity_curve(model,
+            self$fishing_power,
+            gear_select_catch_data$gear_catch_matrix,
+            mesh_sizes,
+            gear_select_catch_data$midpoints,
+            plot = plot
+          )
+        },
+        error = function(ex) {
+          logger::log_error(paste("unable to provide a result for model", model, ex))
+        }
       )
     }
     return(results)
