@@ -12,7 +12,7 @@ the SELECT object result
 Class that estimate some shape selectivity for a list of gears using SELECT
 }
 \section{Super class}{
-\code{utpbdomesel::MixinUtilities} -> \code{UtpbDomeSELECTEstimator}
+\code{\link[utpbdomesel:MixinUtilities]{utpbdomesel::MixinUtilities}} -> \code{UtpbDomeSELECTEstimator}
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
