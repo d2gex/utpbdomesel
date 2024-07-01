@@ -22,20 +22,20 @@ SelectivityResultProcessor <- R6::R6Class("SelectivityResultProcessor", inherit 
     for (model_name in names(self$data)) {
       model_data <- data.frame(
         model = model_name,
-        s100 = self$data[[model_name]]$par[[1]],
-        sigma = self$data[[model_name]]$par[[2]],
-        s100_conv = self$data[[model_name]]$estimates[1, "par"],
-        sigma_conv = self$data[[model_name]]$estimates[2, "par"],
-        deviance = as.numeric(self$data[[model_name]]$out["Deviance", ]),
-        dof = as.numeric(self$data[[model_name]]$out["d.o.f.", ]),
-        s100_se = self$data[[model_name]]$estimates[1, "s.e."],
-        sigma_se = self$data[[model_name]]$estimates[2, "s.e."]
+        s100 = self$data[[model_name]]$outputs$par[[1]],
+        sigma = self$data[[model_name]]$outputs$par[[2]],
+        s100_conv = self$data[[model_name]]$outputs$estimates[1, "par"],
+        sigma_conv = self$data[[model_name]]$outputs$estimates[2, "par"],
+        deviance = as.numeric(self$data[[model_name]]$outputs$out["Deviance", ]),
+        dof = as.numeric(self$data[[model_name]]$outputs$out["d.o.f.", ]),
+        s100_se = self$data[[model_name]]$outputs$estimates[1, "s.e."],
+        sigma_se = self$data[[model_name]]$outputs$estimates[2, "s.e."]
       )
       if (is.null(result_df)) {
         result_df <- self$create_empty_dataframe(names(model_data))
       }
       result_df <- rbind(result_df, model_data)
     }
-    return(result_df)
+    return(result_df %>% arrange(deviance))
   }
 ))
