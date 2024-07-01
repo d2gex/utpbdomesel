@@ -73,7 +73,7 @@ UtpbDomeSELECTEstimator <- R6::R6Class("UtpbDomeSELECTEstimator", inherit = Mixi
   #' @param mesh_size a vector with the mesh size in ascending order by mesh size
   #' @param midpoints a vector with all length classes
   #' @param plot boolean flag indicating whether the estimated curve and its deviations should be plot or not
-  #' @returns the SELECT object result
+  #' @returns the SELECT model's inputs and object results
   #' @export
   # @formatter:on
   estimate_selectivity_curve = function(model, fishing_power, gear_catch, mesh_size, midpoints, plot = FALSE) {
@@ -89,7 +89,10 @@ UtpbDomeSELECTEstimator <- R6::R6Class("UtpbDomeSELECTEstimator", inherit = Mixi
       x0 = NULL,
       plot = plot
     )
-    return(result)
+    return(list(
+      inputs = select_param,
+      outputs = result
+    ))
   }
 ), private = list(
   # @formatter:off
