@@ -20,8 +20,6 @@ repos:
           .*\.png|
           .*\.py|
           .*\.RData|
-          .*\.rds|
-          .*\.Rds|
           .*\.Rproj|
           .*\.sh|
           (.*/|)\.gitignore|
