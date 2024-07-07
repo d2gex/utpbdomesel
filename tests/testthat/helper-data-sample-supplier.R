@@ -12,12 +12,14 @@ get_normal_loc_test_data <- function(sample, model) {
     # Expected output probability for length 7 and 20 for mesh 1
     m1 = list(
       selectivity_curve = sample[[model]]$outputs$selection_ogive_mat[, 2],
+      rel_power = 1,
       proportion = 1
     ),
     # Expected output probability for length 7 and 20 for mesh 2
     m2 = list(
       selectivity_curve = sample[[model]]$outputs$selection_ogive_mat[, 3],
-      proportion = 6 / 9
+      rel_power = 0.08,
+      proportion = 9 / 6
     )
   ))
 }
