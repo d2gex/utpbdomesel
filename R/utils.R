@@ -39,10 +39,10 @@ MixinUtilities <- R6::R6Class("MixinUtilities", public = list( # nolint
   #' @returns the backtransformed mode
   #' @export
   # @formatter:on
-  back_transformed_mode = function(log_mode, log_sigma) {
+  back_transformed_mode = function(log_mode, log_sigma, rel_mesh_size) {
     log_sigma_square <- log_sigma^2
     return(
-      exp(log_mode - log_sigma_square) / self$mesh_proportion
+      exp(log_mode - log_sigma_square) / rel_mesh_size
     )
   },
   # @formatter:off

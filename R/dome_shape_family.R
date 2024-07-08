@@ -54,7 +54,7 @@ NormalFixSpread <- R6::R6Class("NormalFixSpread", inherit = NormalFamily, public
   }
 ))
 
-LogNormalFixedSpread <- R6::R6Class("LogNormalFixedSpread", inherit = NormalFixSpread, public = list( # nolint
+LogNormalVariableSpread <- R6::R6Class("LogNormalVariableSpread", inherit = NormalFixSpread, public = list( # nolint
   # @formatter:off
   #' @description
   #' Returns the numerator and denominator  of the formula. If object's k1 and k2 attributes are in the log scale, the
@@ -64,12 +64,11 @@ LogNormalFixedSpread <- R6::R6Class("LogNormalFixedSpread", inherit = NormalFixS
   #' @export
   # @formatter:on
   get_formula_terms = function() {
-    log_mode <- log(self$k1 * self$mesh_proportion)
-    log_sigma <- log(self$k2)
     log_length_clases <- log(self$length_classes)
+    log_mode <- log(self$k1 * self$mesh_proportion)
     return(list(
       num = (log_length_clases - log_mode)^2,
-      denom = log_sigma^2
+      denom = self$k2^2
     ))
   }
 ))
