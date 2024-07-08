@@ -50,6 +50,23 @@ test_that("normal.sca produces correct length retentions mesh 2", {
   expect_equal(results, data$m2$selectivity_curve)
 })
 
+test_that("normal.sca from Dome LBSPR differs from SELECT for any", {
+  data <- get_normal_loc_test_data(data_sample, "norm.sca")
+  sel_gen <- NormalVariableSpread$new(
+    length_classes = data$midpoints,
+    k1 = data$k1,
+    k2 = data$k2,
+    mesh_proportion = data$m1$proportion,
+    rel_power = data$m1$rel_power
+  )
+  results <- sel_gen$run()
+  dome_lbspr_result <- exp(-0.5 * ((classes - (data$k1 * data$m1$proportion)) / (data$k2^0.5 * data$m1$proportion))^2)
+  # Our implementation and SELECT matches ...
+  expect_equal(results, data$m1$selectivity_curve)
+  # ... But not with LBSR-DOME
+  expect_failure(expect_equal(results, dome_lbspr_result))
+})
+
 test_that("lognorm produces correct length retentions mesh 1", {
   data <- get_normal_loc_test_data(data_sample, "lognorm")
   # Lognorm implementation expects bot backtransformed mode and sd
