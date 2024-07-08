@@ -71,34 +71,6 @@ LogNormalFixedSpread <- R6::R6Class("LogNormalFixedSpread", inherit = NormalFixS
       num = (log_length_clases - log_mode)^2,
       denom = log_sigma^2
     ))
-  },
-  # @formatter:off
-  #' @description
-  #' Backtransform the log(mode(x)) into mode(x) applying e^(u - sigma^2)
-  #'
-  #' @param log_mean lognormal mean
-  #' @returns the backtransformed mode
-  #' @export
-  # @formatter:on
-  back_transformed_mode = function(log_mean) {
-    log_sigma_square <- self$k2^2
-    return(
-      exp(log_mean - log_sigma_square) / self$mesh_proportion
-    )
-  },
-  # @formatter:off
-  #' @description
-  #' Backtransform the log(sqrt(sigma^2)) into sigma applying e^(2* u - sigma^2) * (e^(sigma^2) - 1)
-  #'
-  #' @param log_mean lognormal mean
-  #' @returns the backtransformed standard deviation
-  #' @export
-  # @formatter:on
-  back_transformed_sd = function(log_mean) {
-    log_sigma_square <- self$k2^2
-    return(
-      sqrt(exp(2 * log_mean + log_sigma_square) * (exp(log_sigma_square) - 1))
-    )
   }
 ))
 
