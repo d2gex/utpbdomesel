@@ -107,7 +107,7 @@ NormalVariableSpread <- R6::R6Class("NormalVariableSpread", inherit = NormalFixS
     mode <- self$k1 * self$mesh_proportion
     return(list(
       num = (self$length_classes - mode)^2,
-      denom = self$k2 * (self$mesh_proportion)^2
+      denom = (self$k2 * self$mesh_proportion)^2
     ))
   }
 ))
