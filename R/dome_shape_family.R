@@ -22,7 +22,7 @@ NormalFamily <- R6::R6Class("NormalFamily", public = list( # nolint
   #' @description
   #' Returns the numerator and denominator  of the formula.
   #'
-  #' @returns a named with the numerator and denominator of the wanted formula.
+  #' @returns a named list with the numerator and denominator of the
   #' @export
   # @formatter:on
   get_formula_terms = function() {
@@ -44,6 +44,11 @@ NormalFixSpread <- R6::R6Class("NormalFixSpread", inherit = NormalFamily, public
   initialize = function(length_classes, k1, k2, mesh_proportion, rel_power) {
     super$initialize(length_classes, k1, k2, mesh_proportion, rel_power)
   },
+  #' @description
+  #' Returns the numerator and denominator of the selection curve formula.
+  #'
+  #' @returns a named list with the numerator and denominator of the
+  #' @export
   get_formula_terms = function() {
     mode <- self$k1 * self$mesh_proportion
     sigma_square <- self$k2^2
@@ -57,10 +62,11 @@ NormalFixSpread <- R6::R6Class("NormalFixSpread", inherit = NormalFamily, public
 LogNormalVariableSpread <- R6::R6Class("LogNormalVariableSpread", inherit = NormalFixSpread, public = list( # nolint
   # @formatter:off
   #' @description
-  #' Returns the numerator and denominator  of the formula. If object's k1 and k2 attributes are in the log scale, the
-  #' log domain is only applied to the length classes. Otherwise it does it to all varaibles of the formula.
+  #' Returns the numerator and denominator of the selection curve formula.. If object's k1 and k2 attributes are
+  #' in the log scale, the log domain is only applied to the length classes. Otherwise it does it to all varaibles
+  #' of the formula.
   #'
-  #' @returns a named with the numerator and denominator of the wanted formula.
+  #' @returns a named list with the numerator and denominator of the
   #' @export
   # @formatter:on
   get_formula_terms = function() {
@@ -74,6 +80,11 @@ LogNormalVariableSpread <- R6::R6Class("LogNormalVariableSpread", inherit = Norm
 ))
 
 NormalVariableSpread <- R6::R6Class("NormalVariableSpread", inherit = NormalFixSpread, public = list( # nolint
+  #' @description
+  #' Returns the numerator and denominator of the selection curve formula.
+  #'
+  #' @returns a named list with the numerator and denominator of the
+  #' @export
   get_formula_terms = function() {
     mode <- self$k1 * self$mesh_proportion
     return(list(

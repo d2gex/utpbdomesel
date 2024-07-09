@@ -6,7 +6,7 @@
 \value{
 a named list with SELECT object result
 
-the SELECT object result
+the SELECT model's inputs and object results
 }
 \description{
 Class that estimate some shape selectivity for a list of gears using SELECT
@@ -41,6 +41,8 @@ Class that estimate some shape selectivity for a list of gears using SELECT
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
+<li><span class="pkg-link" data-pkg="utpbdomesel" data-topic="MixinUtilities" data-id="back_transformed_mode"><a href='../../utpbdomesel/html/MixinUtilities.html#method-MixinUtilities-back_transformed_mode'><code>utpbdomesel::MixinUtilities$back_transformed_mode()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="utpbdomesel" data-topic="MixinUtilities" data-id="back_transformed_sd"><a href='../../utpbdomesel/html/MixinUtilities.html#method-MixinUtilities-back_transformed_sd'><code>utpbdomesel::MixinUtilities$back_transformed_sd()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="utpbdomesel" data-topic="MixinUtilities" data-id="create_empty_dataframe"><a href='../../utpbdomesel/html/MixinUtilities.html#method-MixinUtilities-create_empty_dataframe'><code>utpbdomesel::MixinUtilities$create_empty_dataframe()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="utpbdomesel" data-topic="MixinUtilities" data-id="df_to_unname_matrix"><a href='../../utpbdomesel/html/MixinUtilities.html#method-MixinUtilities-df_to_unname_matrix'><code>utpbdomesel::MixinUtilities$df_to_unname_matrix()</code></a></span></li>
 </ul>

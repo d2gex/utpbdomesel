@@ -3,6 +3,11 @@
 \name{MixinUtilities}
 \alias{MixinUtilities}
 \title{Mixin Utility class}
+\value{
+the backtransformed mode
+
+the backtransformed standard deviation
+}
 \description{
 It holds a few util methods used across all classes in the this R package
 }
@@ -11,6 +16,8 @@ It holds a few util methods used across all classes in the this R package
 \itemize{
 \item \href{#method-MixinUtilities-create_empty_dataframe}{\code{MixinUtilities$create_empty_dataframe()}}
 \item \href{#method-MixinUtilities-df_to_unname_matrix}{\code{MixinUtilities$df_to_unname_matrix()}}
+\item \href{#method-MixinUtilities-back_transformed_mode}{\code{MixinUtilities$back_transformed_mode()}}
+\item \href{#method-MixinUtilities-back_transformed_sd}{\code{MixinUtilities$back_transformed_sd()}}
 \item \href{#method-MixinUtilities-clone}{\code{MixinUtilities$clone()}}
 }
 }
@@ -45,6 +52,40 @@ to a subset of columns only.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{col_names}}{vector with the column names of the empty dataframe}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MixinUtilities-back_transformed_mode"></a>}}
+\if{latex}{\out{\hypertarget{method-MixinUtilities-back_transformed_mode}{}}}
+\subsection{Method \code{back_transformed_mode()}}{
+Backtransform the log(mode(x)) into mode(x) applying e^(u - sigma^2)
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MixinUtilities$back_transformed_mode(log_mode, log_sigma, rel_mesh_size)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{log_mean}}{lognormal mean}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MixinUtilities-back_transformed_sd"></a>}}
+\if{latex}{\out{\hypertarget{method-MixinUtilities-back_transformed_sd}{}}}
+\subsection{Method \code{back_transformed_sd()}}{
+Backtransform the log(sqrt(sigma^2)) into sigma applying e^(2* u - sigma^2) * (e^(sigma^2) - 1)
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MixinUtilities$back_transformed_sd(log_mode, log_sigma)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{log_mean}}{lognormal mean}
 }
 \if{html}{\out{</div>}}
 }

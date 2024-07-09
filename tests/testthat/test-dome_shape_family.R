@@ -50,7 +50,7 @@ test_that("normal.sca produces correct length retentions mesh 2", {
   expect_equal(results, data$m2$selectivity_curve)
 })
 
-test_that("normal.sca from Dome LBSPR differs from SELECT for any", {
+test_that("normal.sca for Dome LBSPR differs from that of SELECT for any mesh", {
   data <- get_normal_loc_test_data(data_sample, "norm.sca")
   sel_gen <- NormalVariableSpread$new(
     length_classes = data$midpoints,

@@ -2,6 +2,10 @@
 
 export(FishingEffortCalculator)
 export(GearFishingPowerCalculator)
+export(LogNormalVariableSpread)
 export(MixinUtilities)
+export(NormalFamily)
+export(NormalFixSpread)
+export(NormalVariableSpread)
 export(SelectivityResultProcessor)
 export(UtpbDomeSELECTEstimator)
