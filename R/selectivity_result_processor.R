@@ -110,7 +110,7 @@ SelectivityResultProcessor <- R6::R6Class("SelectivityResultProcessor", inherit 
         LogNormalVariableSpread
       }
     )
-    sel_ogives <- lapply(seq_along(rel_power), function(offset) {
+    sel_ogives <- lapply(seq_along(self$rel_power), function(offset) {
       sel_curve <- model_class$new(midpoints, mode, spread, self$rel_mesh_sizes[offset], self$rel_power[offset])
       sel_curve$run()
     })
