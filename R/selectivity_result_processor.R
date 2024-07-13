@@ -36,7 +36,7 @@ SelectivityResultProcessor <- R6::R6Class("SelectivityResultProcessor", inherit 
     sel_ogives <- lapply(names(self$data), function(model) {
       private$extract_sel_curves(model)
     })
-    names(sel_ogives) <- names(data)
+    names(sel_ogives) <- names(self$data)
     individual_gear_s100 <- private$calculate_individual_gear_s100(params_df)
     summed_gear_s100 <- private$calculate_summed_gear_s100(sel_ogives)
     s100 <- with(stack(c(individual_gear_s100, summed_gear_s100)), split(values, ind))
