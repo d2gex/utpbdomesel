@@ -14,6 +14,7 @@ UtpbDomeSELECTEstimator <- R6::R6Class("UtpbDomeSELECTEstimator", inherit = Mixi
   catch_context = NULL,
   #' @field models vector of model names to be estimated by SELECT
   models = NULL,
+  mesh_names = NULL,
   #' @description
   #' Initialise class DomeSelectivityEstimator
   #' @param length_fq long dataframe with lengths and gears
@@ -25,8 +26,9 @@ UtpbDomeSELECTEstimator <- R6::R6Class("UtpbDomeSELECTEstimator", inherit = Mixi
   # @formatter:on
   initialize = function(length_fq, fishing_power, mesh_sizes, catch_context, models) {
     self$length_fq <- length_fq
-    self$mesh_sizes <- mesh_sizes[order(unlist(mesh_sizes))] # ensure it is ordered from small to large meshes
-    self$fishing_power <- unlist(unname(fishing_power[names(self$mesh_sizes)])) # same names order as meshes
+    self$mesh_names <- names(mesh_sizes[order(unlist(mesh_sizes))]) # order names as the ascending order of mesh sizes
+    self$mesh_sizes <- mesh_sizes[self$mesh_names] # Same order as mesh sizes (ascending)
+    self$fishing_power <- unlist(unname(fishing_power[self$mesh_names])) # Same order as mesh sizes (ascending)
     self$catch_context <- catch_context
     self$models <- models
   },
