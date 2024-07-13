@@ -14,9 +14,9 @@ SelectivityResultProcessor <- R6::R6Class("SelectivityResultProcessor", inherit 
   # @formatter:on
   initialize = function(data, rel_power, mesh_sizes) {
     self$data <- data
-    self$mesh_names <- names(rel_power)
-    self$rel_power <- unlist(unname(rel_power))
-    self$mesh_sizes <- unlist(unname(mesh_sizes))
+    self$mesh_names <- names(mesh_sizes[order(unlist(mesh_sizes))]) # order names as ascending order of meshe sizes
+    self$mesh_sizes <- unlist(unname(mesh_sizes[self$mesh_names])) # follow through mesh names order
+    self$rel_power <- unlist(unname(rel_power[self$mesh_names])) # follow through mesh names order
     self$rel_mesh_sizes <- self$mesh_sizes / min(self$mesh_sizes)
   },
   # @formatter:off
