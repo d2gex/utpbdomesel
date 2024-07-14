@@ -131,7 +131,7 @@ GearFishingPowerCalculator <- R6::R6Class("GearFishingPowerCalculator", public =
     gear_ratios <- list()
     for (gear_name in names(gears)) {
       num_panels <- sum(gears[[gear_name]]$panels)
-      panel_ratio <- as.numeric(self$gear_area[self$gear_area["gear"] == gear_name, "area_ratio"])
+      panel_ratio <- as.numeric(self$gear_area[self$gear_area["gear"] == gear_name, "inner_lengths"])
       gear_ratios[[gear_name]] <- num_panels * panel_ratio
     }
     return(gear_ratios)
