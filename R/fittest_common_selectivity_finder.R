@@ -1,3 +1,7 @@
+#' @title FittestCommonDomeSelectivityFinderClass
+#'
+#' @description
+#' Class that estimate the fittest selectivity curve through a number of trials
 FittestCommonDomeSelectivityFinder <- R6::R6Class("FittestCommonDomeSelectivityFinder", public = list( # nolint
   # @formatter:off
   #' @field catch_data dataframe containing all raw data about gear and catches
@@ -12,6 +16,16 @@ FittestCommonDomeSelectivityFinder <- R6::R6Class("FittestCommonDomeSelectivityF
   rel_power = NULL,
   #' @field sel_model vector of models for which selectivity will be calculated
   sel_models = NULL,
+
+  #' @description
+  #' Initialise class FittestCommonDomeSelectivityFinder
+  #' @param catch_data a dataframe with the catch data
+  #' @param catch_context a R6 class with the context required to understand the catch data
+  #' @param haul_ids a list of haul id vectors from which to estimate a curve on each trial
+  #' @param mesh_sizes a named list with size of meshes involved
+  #' @param rel_power a named list with the relative fishing power of each mess
+  #' @param sel_models a character vector with the name of the models to estimate selectivity curves
+  #' @export
   # @formatter:on
   initialize = function(catch_data, catch_context, haul_ids, mesh_sizes, rel_power, sel_models) {
     self$catch_data <- catch_data
@@ -21,6 +35,11 @@ FittestCommonDomeSelectivityFinder <- R6::R6Class("FittestCommonDomeSelectivityF
     self$rel_power <- rel_power
     self$sel_models <- sel_models
   },
+  #' @description
+  #' Run num_trials times the selectivity estimate and find the fittest one
+  #'
+  #' @param num_trials number of trials
+  #' @export
   run = function(num_trials = 50) {
     sel_detail_list <- self$run_trials(num_trials)
     sel_details <- self$fetch_sel_details(sel_detail_list)

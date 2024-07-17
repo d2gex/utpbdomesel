@@ -17,6 +17,7 @@ UtpbDomeSELECTEstimator <- R6::R6Class("UtpbDomeSELECTEstimator", inherit = Mixi
   mesh_names = NULL,
   #' @description
   #' Initialise class DomeSelectivityEstimator
+  #'
   #' @param length_fq long dataframe with lengths and gears
   #' @param fishing_power named list with the relative fishing power of each gear
   #' @param mesh_sizes named list with every mesh size

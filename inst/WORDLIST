@@ -12,6 +12,8 @@ Dev
 dgarcia
 DomeSelectivityEstimator
 dplyr
+FittestCommonDomeSelectivityFinder
+FittestCommonDomeSelectivityFinderClass
 fZ
 Galician
 gex
@@ -21,10 +23,12 @@ iim
 Ik
 Initialise
 Jb
+Linf
 midLengths
 Millar
 mit
 Mixin
+num
 purrr
 QS
 resids
