@@ -63,6 +63,9 @@ UtpbDomeSELECTEstimator <- R6::R6Class("UtpbDomeSELECTEstimator", inherit = Mixi
         }
       )
     }
+    if (length(results) == 0) {
+      return(NULL)
+    }
     return(results)
   },
   # @formatter:off
