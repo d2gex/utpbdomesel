@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Class that creates a dome-shape curve off a logistic one
-DomeFromLogisticCurveGenerator <- R6::R6Class("DomeFromLogisticCurveGenerator", inherit = CurveGenerator, ublic = list( # nolint
+DomeFromLogisticCurveGenerator <- R6::R6Class("DomeFromLogisticCurveGenerator", inherit = CurveGenerator, public = list( # nolint
   # @formatter:off
   #' @field logistic_sfull length at which a logistic function approaches 1 very rapidly
   logistic_sfull = NULL,

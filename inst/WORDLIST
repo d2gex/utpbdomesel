@@ -11,6 +11,7 @@ csic
 CurveGenerator
 Dev
 dgarcia
+DomeFromLogisticCurveGenerator
 DomeFromLogisticSelCurveGenerator
 DomeSelectivityEstimator
 dplyr
@@ -48,6 +49,7 @@ tibble
 tidyr
 TropFishR
 TwoParamsLogisticSelCurveCalculator
+TwoParLogisticCurveGenerator
 util
 utpbdomesel
 utpbwlfq
