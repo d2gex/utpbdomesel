@@ -16,7 +16,7 @@ SelectivityCurveGenerator <- R6::R6Class("SelectivityCurveGenerator", public = l
     )
     return(millar_generator$run(num_trials))
   },
-  two_params_logistic = function() {
+  two_params_logistic = function(lengths, sl50, sl95) {
     two_par_log_gen <- TwoParLogisticCurveGenerator$new(lengths, sl50, sl95)
     return(two_par_log_gen$run())
   },

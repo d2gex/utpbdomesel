@@ -22,11 +22,11 @@ TwoParLogisticCurveGenerator <- R6::R6Class("TwoParLogisticCurveGenerator", inhe
     self$sl95 <- ifelse(length(sl95) > 1, mean(sl95, na.rm = TRUE), sl95)
   },
   run = function() {
-    ogive <- self$calculate_ogive()
-    sfull <- private$calculate_sfull(ogive)
+    curve <- self$generate_curve_df()
+    sfull <- private$calculate_sfull(curve)
     return(list(
-      logistic_ogive = ogive,
-      sfull = sfull,
+      curve = curve,
+      sfull = sfull
     ))
   },
   generate_curve_df = function() {
@@ -40,7 +40,7 @@ TwoParLogisticCurveGenerator <- R6::R6Class("TwoParLogisticCurveGenerator", inhe
 ), private = list(
   calculate_sfull = function(ogive) {
     return(
-      ogive$lengths[which(round(ogive$logistic, 2) == 1)[1]]
+      ogive$lengths[which(round(ogive$retention, 2) == 1)[1]]
     )
   }
 ))
