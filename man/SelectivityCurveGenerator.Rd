@@ -47,11 +47,7 @@ to generate selection curves as requested
 \if{latex}{\out{\hypertarget{method-SelectivityCurveGenerator-dome_approach_to_logistic}{}}}
 \subsection{Method \code{dome_approach_to_logistic()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SelectivityCurveGenerator$dome_approach_to_logistic(
-  lengths,
-  logistic_sfull,
-  logistic_spread
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SelectivityCurveGenerator$dome_approach_to_logistic(lengths, logistic_sfull)}\if{html}{\out{</div>}}
 }
 
 }

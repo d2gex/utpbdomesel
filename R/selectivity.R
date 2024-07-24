@@ -20,8 +20,8 @@ SelectivityCurveGenerator <- R6::R6Class("SelectivityCurveGenerator", public = l
     two_par_log_gen <- TwoParLogisticCurveGenerator$new(lengths, sl50, sl95)
     return(two_par_log_gen$run())
   },
-  dome_approach_to_logistic = function(lengths, logistic_sfull, logistic_spread) {
-    dome_from_log_gen <- DomeFromLogisticCurveGenerator$new(lengths, logistic_sfull, logistic_spread)
+  dome_approach_to_logistic = function(lengths, logistic_sfull) {
+    dome_from_log_gen <- DomeFromLogisticCurveGenerator$new(lengths, logistic_sfull)
     return(dome_from_log_gen$run())
   }
 ))
