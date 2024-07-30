@@ -54,7 +54,7 @@ SelectivityCurveGenerator <- R6::R6Class("SelectivityCurveGenerator", public = l
   #' @export
   # @formatter:on
   dome_approach_to_logistic = function(lengths, sl50, sl95, length_increment = 0.1) {
-    logistic_curve <- self$two_params_logistic(lengths, sl50, ls95)
+    logistic_curve <- self$two_params_logistic(lengths, sl50, sl95)
     normal_from_logit_builder <- NormalFromLogisticApproximator$new(
       sl50,
       sl95,
@@ -63,7 +63,7 @@ SelectivityCurveGenerator <- R6::R6Class("SelectivityCurveGenerator", public = l
       lengths
     )
     ret <- normal_from_logit_builder$run()
-    dome_from_log_gen <- DomeFromLogisticCurveGenerator$new(lengths, logistic_sfull, ret$spread)
+    dome_from_log_gen <- DomeFromLogisticCurveGenerator$new(lengths, logistic_curve$sfull, ret$spread)
     return(dome_from_log_gen$run())
   }
 ))
