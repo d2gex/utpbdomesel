@@ -47,7 +47,11 @@ NormalFromLogisticApproximator <- R6::R6Class("NormalFromLogisticApproximator", 
     if (is.null(k2_scanned_interval)) {
       k2_scanned_interval <- private$find_k2_search_range()
     }
-    return(optimize(private$outer_minimization, k2_scanned_interval))
+    ret <- optimize(private$outer_minimization, k2_scanned_interval)
+    return(list(
+      spread = ret$minimum,
+      optimised_func_value = ret$objective
+    ))
   }
 ), private = list(
   normal = function(length_value, k2) {

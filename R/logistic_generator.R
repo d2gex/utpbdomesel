@@ -18,14 +18,14 @@ TwoParLogisticCurveGenerator <- R6::R6Class("TwoParLogisticCurveGenerator", inhe
   # @formatter:on
   initialize = function(lengths, sl50, sl95) {
     super$initialize(lengths)
-    self$sl50 <- ifelse(length(sl50) > 1, mean(sl50, na.rm = TRUE), sl50)
-    self$sl95 <- ifelse(length(sl95) > 1, mean(sl95, na.rm = TRUE), sl95)
+    self$sl50 <- sl50
+    self$sl95 <- sl95
   },
   run = function() {
-    curve <- self$generate_curve_df()
-    sfull <- private$calculate_sfull(curve)
+    curve_df <- self$generate_curve_df()
+    sfull <- private$calculate_sfull(curve_df)
     return(list(
-      curve = curve,
+      curve = curve_df,
       sfull = sfull
     ))
   },

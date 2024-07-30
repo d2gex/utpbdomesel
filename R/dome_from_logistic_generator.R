@@ -1,40 +1,39 @@
 #' @title DomeFromLogisticCurveGenerator Class
 #'
 #' @description
-#' Class that creates a dome-shape curve off a logistic one
+#' Class that creates a dome-shape curve ogive given the mode and spread
 DomeFromLogisticCurveGenerator <- R6::R6Class("DomeFromLogisticCurveGenerator", inherit = CurveGenerator, public = list( # nolint
   # @formatter:off
-  #' @field logistic_sfull length at which a logistic function approaches 1 very rapidly
-  logistic_sfull = NULL,
-  #' @field dome_spread sigma value of the new calculated dome-shape curve with max retention at logistic_sfull
-  dome_spread = NULL,
+  #' @field k1 maximum retention length
+  k1 = NULL,
+  #' @field k2 curve spread
+  k2 = NULL,
   #' @description
   #' Initialise class DomeFromLogisticCurveGenerator
   #'
   #' @param lengths vector of length classes
-  #' @param logistic_sfull length at which a logistic function approaches 1 very rapidly
+  #' @param k1 maximum retention length
+  #' @param k2 curve spread
   #' @export
   # @formatter:on
-  initialize = function(lengths, logistic_sfull) {
+  initialize = function(lengths, k1, k2) {
     super$initialize(lengths)
-    self$logistic_sfull <- logistic_sfull
-    self$dome_spread <- private$calculate_sigma()
+    self$k1 <- k1
+    self$k2 <- k2
   },
   run = function() {
     curve_df <- self$generate_curve_df()
     return(list(
       curve = curve_df,
-      mode = self$logistic_sfull,
-      sigma = self$dome_spread
+      mode = self$k1,
+      sigma = self$k2
     ))
   },
   generate_curve_df = function() {
-    k1 <- self$logistic_sfull
-    k2 <- self$dome_spread
     normal_loc <- NormalFixSpread$new(
       self$lengths,
-      k1,
-      k2,
+      self$k1,
+      self$k2,
       mesh_proportion = 1,
       rel_power = 1
     )
@@ -44,9 +43,5 @@ DomeFromLogisticCurveGenerator <- R6::R6Class("DomeFromLogisticCurveGenerator", 
       lengths = self$lengths,
       retention = ogive
     ))
-  }
-), private = list(
-  calculate_sigma = function() {
-    return(abs(self$logistic_sfull - min(self$lengths)) / 3)
   }
 ))
