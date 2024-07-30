@@ -4,7 +4,7 @@
 \alias{DomeFromLogisticCurveGenerator}
 \title{DomeFromLogisticCurveGenerator Class}
 \description{
-Class that creates a dome-shape curve off a logistic one
+Class that creates a dome-shape curve ogive given the mode and spread
 }
 \section{Super class}{
 \code{\link[utpbdomesel:CurveGenerator]{utpbdomesel::CurveGenerator}} -> \code{DomeFromLogisticCurveGenerator}
@@ -12,9 +12,9 @@ Class that creates a dome-shape curve off a logistic one
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{logistic_sfull}}{length at which a logistic function approaches 1 very rapidly}
+\item{\code{k1}}{maximum retention length}
 
-\item{\code{dome_spread}}{sigma value of the new calculated dome-shape curve with max retention at logistic_sfull}
+\item{\code{k2}}{curve spread}
 }
 \if{html}{\out{</div>}}
 }
@@ -33,7 +33,7 @@ Class that creates a dome-shape curve off a logistic one
 \subsection{Method \code{new()}}{
 Initialise class DomeFromLogisticCurveGenerator
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{DomeFromLogisticCurveGenerator$new(lengths, logistic_sfull)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{DomeFromLogisticCurveGenerator$new(lengths, k1, k2)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -41,7 +41,9 @@ Initialise class DomeFromLogisticCurveGenerator
 \describe{
 \item{\code{lengths}}{vector of length classes}
 
-\item{\code{logistic_sfull}}{length at which a logistic function approaches 1 very rapidly}
+\item{\code{k1}}{maximum retention length}
+
+\item{\code{k2}}{curve spread}
 }
 \if{html}{\out{</div>}}
 }

@@ -3,9 +3,14 @@
 \name{SelectivityCurveGenerator}
 \alias{SelectivityCurveGenerator}
 \title{SelectivityCurveGeneratorr Class}
+\value{
+a named list with the logistic ogive and its maximum retention length
+
+a named list with the dome ogive, mode (max retention) and spread
+}
 \description{
-Wrapper class that call the millar SELECT method, two parameter logistic funtion and normal fixed function
-to generate selection curves as requested
+Wrapper class that call the millar SELECT method, two parameter logistic funtion and normal-off-logistic fixed
+function to generate selection curves as requested
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -20,6 +25,7 @@ to generate selection curves as requested
 \if{html}{\out{<a id="method-SelectivityCurveGenerator-select_millar"></a>}}
 \if{latex}{\out{\hypertarget{method-SelectivityCurveGenerator-select_millar}{}}}
 \subsection{Method \code{select_millar()}}{
+Estimate the SELECT dome-shape curve that best fit the catch data
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SelectivityCurveGenerator$select_millar(
   catch_data,
@@ -32,24 +38,72 @@ to generate selection curves as requested
 )}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{catch_data}}{dataframe containing all raw data about gear and catches}
+
+\item{\code{catch_context}}{R6 class holding information about catch_data columns and species' Linf}
+
+\item{\code{haul_ids}}{list of haul id vectors}
+
+\item{\code{mesh_sizes}}{name list of mesh sizes in ascending order}
+
+\item{\code{rel_power}}{name list of mesh relative fishing power in ascending order}
+
+\item{\code{num_trials}}{number of trials required to find the most common mode for the SELECT estimates}
+
+\item{\code{sel_model}}{vector of models for which selectivity will be calculated}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-SelectivityCurveGenerator-two_params_logistic"></a>}}
 \if{latex}{\out{\hypertarget{method-SelectivityCurveGenerator-two_params_logistic}{}}}
 \subsection{Method \code{two_params_logistic()}}{
+Generates a logistic ogive and caculate the first length that reaches maximum retention.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SelectivityCurveGenerator$two_params_logistic()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SelectivityCurveGenerator$two_params_logistic(lengths, sl50, sl95)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{lengths}}{vector of lengths}
+
+\item{\code{sl50}}{vector of selectivity at 50\% values - it can containe one single value only}
+
+\item{\code{sl95}}{vector of selectivity at 95\% values - it can containe one single value only}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-SelectivityCurveGenerator-dome_approach_to_logistic"></a>}}
 \if{latex}{\out{\hypertarget{method-SelectivityCurveGenerator-dome_approach_to_logistic}{}}}
 \subsection{Method \code{dome_approach_to_logistic()}}{
+Generates a normal distribution curve that best fits a given two-parameter logistic function.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SelectivityCurveGenerator$dome_approach_to_logistic(lengths, logistic_sfull)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SelectivityCurveGenerator$dome_approach_to_logistic(
+  lengths,
+  sl50,
+  sl95,
+  length_increment = 0.1
+)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{lengths}}{vector of lengths}
+
+\item{\code{sl50}}{vector of selectivity at 50\% values - it can containe one single value only}
+
+\item{\code{sl95}}{vector of selectivity at 95\% values - it can containe one single value only}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-SelectivityCurveGenerator-clone"></a>}}
