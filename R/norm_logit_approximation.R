@@ -82,7 +82,8 @@ NormalFromLogisticApproximator <- R6::R6Class("NormalFromLogisticApproximator", 
   #' Calculate the range where the most optimal k2 value should be found. It uses the standard deviation concept
   find_k2_search_range = function() {
     k2 <- (self$k1 - min(self$length_classes)) / 3
-    return(c(k2 - 1, k2 + 1))
+    interval <- c(0, 2 * k2)
+    return(interval)
   },
   inner_maximization = function(length_value, k2) {
     abs(private$normal(length_value, k2) - private$emulate_symmetric_dome_from_two_param_logistic(length_value))
