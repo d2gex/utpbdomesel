@@ -65,5 +65,22 @@ SelectivityCurveGenerator <- R6::R6Class("SelectivityCurveGenerator", public = l
     ret <- normal_from_logit_builder$run()
     dome_from_log_gen <- DomeFromLogisticCurveGenerator$new(lengths, logistic_curve$sfull, ret$spread)
     return(dome_from_log_gen$run())
+  },
+  # @formatter:off
+  #' @description
+  #' Generates a quasi dome-shape curve, whereby the left limb is built by using a two-parameter logistic function
+  #' and the right one, by a symmetric dome-shape curve. The latter's spread is obtaiend from the closest symmetric
+  #' dome-shape function to two-tail logistic function wher the right tail is a mirror of the left.
+  #'
+  #' @param lengths vector of lengths
+  #' @param sl50 vector of selectivity at 50% values - it can containe one single value only
+  #' @param sl95 vector of selectivity at 95% values - it can containe one single value only
+  #' @param k2 right-limb dome curve spread
+  #' @returns a named list with the dome ogive, mode (max retention) and spread
+  #' @export
+  # @formatter:on
+  quasi_dome_from_logistic = function(lengths, sl50, sl95, k2) {
+    quasi_dome_gen <- QuasiDomeFromLogisticGenerator$new(lengths, sl50, sl95, k2)
+    return(quasi_dome_gen$run())
   }
 ))

@@ -17,6 +17,6 @@ CurveGenerator <- R6::R6Class("CurveGenerator", public = list( # nolint
   },
   run = function() {
   },
-  generate_curve_df = function() {
+  generate_curve_df = function(...) {
   }
 ))

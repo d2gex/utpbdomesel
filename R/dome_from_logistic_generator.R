@@ -29,7 +29,7 @@ DomeFromLogisticCurveGenerator <- R6::R6Class("DomeFromLogisticCurveGenerator", 
       sigma = self$k2
     ))
   },
-  generate_curve_df = function() {
+  generate_curve_df = function(...) {
     normal_loc <- NormalFixSpread$new(
       self$lengths,
       self$k1,

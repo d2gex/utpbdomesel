@@ -23,13 +23,14 @@ TwoParLogisticCurveGenerator <- R6::R6Class("TwoParLogisticCurveGenerator", inhe
   },
   run = function() {
     curve_df <- self$generate_curve_df()
-    sfull <- private$calculate_sfull(curve_df)
+    sfull_details <- private$get_sfull_details(curve_df)
     return(list(
       curve = curve_df,
-      sfull = sfull
+      sfull = sfull_details$sfull,
+      sfull_offset = sfull_details$sfull_offset
     ))
   },
-  generate_curve_df = function() {
+  generate_curve_df = function(...) {
     return(
       data.frame(
         lengths = self$lengths,
@@ -38,9 +39,10 @@ TwoParLogisticCurveGenerator <- R6::R6Class("TwoParLogisticCurveGenerator", inhe
     )
   }
 ), private = list(
-  calculate_sfull = function(ogive) {
-    return(
-      ogive$lengths[which(round(ogive$retention, 2) == 1)[1]]
-    )
+  get_sfull_details = function(ogive) {
+    return(list(
+      sfull = ogive$lengths[which(round(ogive$retention, 2) == 1)[1]],
+      sfull_offset = which(round(ogive$retention, 2) == 1)[1]
+    ))
   }
 ))
