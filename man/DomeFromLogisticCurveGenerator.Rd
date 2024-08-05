@@ -62,7 +62,7 @@ Initialise class DomeFromLogisticCurveGenerator
 \if{latex}{\out{\hypertarget{method-DomeFromLogisticCurveGenerator-generate_curve_df}{}}}
 \subsection{Method \code{generate_curve_df()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{DomeFromLogisticCurveGenerator$generate_curve_df()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{DomeFromLogisticCurveGenerator$generate_curve_df(...)}\if{html}{\out{</div>}}
 }
 
 }

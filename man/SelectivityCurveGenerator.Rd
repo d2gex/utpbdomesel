@@ -7,6 +7,8 @@
 a named list with the logistic ogive and its maximum retention length
 
 a named list with the dome ogive, mode (max retention) and spread
+
+a named list with the dome ogive, mode (max retention) and spread
 }
 \description{
 Wrapper class that call the millar SELECT method, two parameter logistic funtion and normal-off-logistic fixed
@@ -18,6 +20,7 @@ function to generate selection curves as requested
 \item \href{#method-SelectivityCurveGenerator-select_millar}{\code{SelectivityCurveGenerator$select_millar()}}
 \item \href{#method-SelectivityCurveGenerator-two_params_logistic}{\code{SelectivityCurveGenerator$two_params_logistic()}}
 \item \href{#method-SelectivityCurveGenerator-dome_approach_to_logistic}{\code{SelectivityCurveGenerator$dome_approach_to_logistic()}}
+\item \href{#method-SelectivityCurveGenerator-quasi_dome_from_logistic}{\code{SelectivityCurveGenerator$quasi_dome_from_logistic()}}
 \item \href{#method-SelectivityCurveGenerator-clone}{\code{SelectivityCurveGenerator$clone()}}
 }
 }
@@ -101,6 +104,31 @@ Generates a normal distribution curve that best fits a given two-parameter logis
 \item{\code{sl50}}{vector of selectivity at 50\% values - it can containe one single value only}
 
 \item{\code{sl95}}{vector of selectivity at 95\% values - it can containe one single value only}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-SelectivityCurveGenerator-quasi_dome_from_logistic"></a>}}
+\if{latex}{\out{\hypertarget{method-SelectivityCurveGenerator-quasi_dome_from_logistic}{}}}
+\subsection{Method \code{quasi_dome_from_logistic()}}{
+Generates a quasi dome-shape curve, whereby the left limb is built by using a two-parameter logistic function
+and the right one, by a symmetric dome-shape curve. The latter's spread is obtaiend from the closest symmetric
+dome-shape function to two-tail logistic function wher the right tail is a mirror of the left.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{SelectivityCurveGenerator$quasi_dome_from_logistic(lengths, sl50, sl95, k2)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{lengths}}{vector of lengths}
+
+\item{\code{sl50}}{vector of selectivity at 50\% values - it can containe one single value only}
+
+\item{\code{sl95}}{vector of selectivity at 95\% values - it can containe one single value only}
+
+\item{\code{k2}}{right-limb dome curve spread}
 }
 \if{html}{\out{</div>}}
 }

@@ -62,7 +62,7 @@ Initialise class TwoParLogisticCurveGenerator
 \if{latex}{\out{\hypertarget{method-TwoParLogisticCurveGenerator-generate_curve_df}{}}}
 \subsection{Method \code{generate_curve_df()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{TwoParLogisticCurveGenerator$generate_curve_df()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{TwoParLogisticCurveGenerator$generate_curve_df(...)}\if{html}{\out{</div>}}
 }
 
 }

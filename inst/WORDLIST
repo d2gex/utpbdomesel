@@ -20,6 +20,7 @@ DomeSelectivityEstimator
 dplyr
 FittestCommonDomeSelectivityFinder
 FittestCommonDomeSelectivityFinderClass
+funciton
 functio
 funtion
 fZ
@@ -33,6 +34,7 @@ Ik
 Initialise
 Jb
 Linf
+maximun
 midLengths
 Millar
 millar
@@ -40,14 +42,18 @@ mit
 Mixin
 NormalFromLogisticApproximator
 num
+obtaiend
 ogive
 optimisation
 optimise
 purrr
 QS
+quase
+QuasiDomeFromLogisticGenerator
 resids
 Roxygen
 RoxygenNote
+sahpe
 SelectivityCurveGeneratorr
 sfull
 SL
@@ -64,6 +70,7 @@ utpbdomesel
 utpbwlfq
 vectorwith
 Vx
+wher
 YZտ
 ͣ
 ۻ
