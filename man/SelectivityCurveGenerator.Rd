@@ -86,7 +86,9 @@ Generates a logistic ogive and caculate the first length that reaches maximum re
 \if{html}{\out{<a id="method-SelectivityCurveGenerator-dome_approach_to_logistic"></a>}}
 \if{latex}{\out{\hypertarget{method-SelectivityCurveGenerator-dome_approach_to_logistic}{}}}
 \subsection{Method \code{dome_approach_to_logistic()}}{
-Generates a normal distribution curve that best fits a given two-parameter logistic function.
+Generates a normal distribution curve that best fits a given two-parameter logistic function. The right logistic
+limb is mirrored off its left, from the minimum to the maximum retention length - the first length that gets very
+close to 1.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SelectivityCurveGenerator$dome_approach_to_logistic(
   lengths,

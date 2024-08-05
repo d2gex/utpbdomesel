@@ -4,8 +4,8 @@
 \alias{NormalFromLogisticApproximator}
 \title{DNormalFromLogisticApproximator Class}
 \description{
-Class that finds the best normal distribution fit given a logistic function and its s100. This piece of code is
-a version from https://stats.stackexchange.com/a/630701/355585
+Class that finds the best normal distribution fit given a two-tail logistic functions stuck together and its s100.
+This piece of code is a version from https://stats.stackexchange.com/a/630701/355585
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}

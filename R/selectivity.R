@@ -45,7 +45,9 @@ SelectivityCurveGenerator <- R6::R6Class("SelectivityCurveGenerator", public = l
   },
   # @formatter:off
   #' @description
-  #' Generates a normal distribution curve that best fits a given two-parameter logistic function.
+  #' Generates a normal distribution curve that best fits a given two-parameter logistic function. The right logistic
+  #' limb is mirrored off its left, from the minimum to the maximum retention length - the first length that gets very
+  #' close to 1.
   #'
   #' @param lengths vector of lengths
   #' @param sl50 vector of selectivity at 50% values - it can containe one single value only

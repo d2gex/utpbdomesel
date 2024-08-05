@@ -1,8 +1,8 @@
 #' @title DNormalFromLogisticApproximator Class
 #'
 #' @description
-#' Class that finds the best normal distribution fit given a logistic function and its s100. This piece of code is
-#' a version from https://stats.stackexchange.com/a/630701/355585
+#' Class that finds the best normal distribution fit given a two-tail logistic functions stuck together and its s100.
+#' This piece of code is a version from https://stats.stackexchange.com/a/630701/355585
 NormalFromLogisticApproximator <- R6::R6Class("NormalFromLogisticApproximator", public = list( # nolint
   # @formatter:off
   #' @field sl50 length at which fish could be caught with a 50% chance
@@ -64,7 +64,8 @@ NormalFromLogisticApproximator <- R6::R6Class("NormalFromLogisticApproximator", 
     )
     return(normal_loc$run())
   },
-  #' Emulate a symmetric dome-shape curve that is built from a two-parameter logistic function
+  #' Build a symmetric curve formed by two tail logistic function. The right limb is just a mirror of the
+  #' left-hand side up to the first length that is very close to 1, its maximum retention length.
   emulate_symmetric_dome_from_two_param_logistic = function(length_value) {
     length_limb_size <- self$k1 - min(self$length_classes)
     dist_to_k1 <- length_value - self$k1
